@@ -30,7 +30,7 @@ struct ContentView: View {
     
     @State private var animationAmount = [0.0, 0.0, 0.0]
     @State private var opacities = [1.0, 1.0, 1.0]
-
+    @State private var scales = [1.0, 1.0, 1.0]
     
     var body: some View {
         ZStack {
@@ -63,6 +63,7 @@ struct ContentView: View {
                             FlagImage(country: countries[number])
                                 .rotation3DEffect(.degrees(animationAmount[number]), axis: (x: 0, y: 1, z: 0))
                                 .opacity(opacities[number])
+                                .scaleEffect(scales[number])
                         }
                     }
                 }
@@ -95,6 +96,7 @@ struct ContentView: View {
             
             for index in 0..<3 {
                 opacities[index] = index == number ? 1.0 : 0.25
+                scales[index] = index == number ? 1.0 : 0.75
             }
         }
         
@@ -120,6 +122,7 @@ struct ContentView: View {
         countries.shuffle()
         correctAnswer = Int.random(in: 0...2)
         opacities = [1.0, 1.0, 1.0]
+        scales = [1.0, 1.0, 1.0]
     }
     
     func reset() {
@@ -128,6 +131,7 @@ struct ContentView: View {
         userScore = 0
         questions = 0
         opacities = [1.0, 1.0, 1.0]
+        scales = [1.0, 1.0, 1.0]
     }
 }
 
